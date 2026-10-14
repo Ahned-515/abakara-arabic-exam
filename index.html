@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1D4ED8">
+  <meta name="description" content="امتحان اللغة العربية الإلكتروني - منصة عباقرة البكالوريا 2026/2027">
   <title>امتحان اللغة العربية | عباقرة البكالوريا</title>
+
   <style>
     :root {
       --blue: #1D4ED8;
@@ -13,9 +15,21 @@
       --light: #EFF6FF;
       --white: #FFFFFF;
       --text: #172554;
+      --muted: #64748B;
+      --border: #CBD5E1;
+      --success: #166534;
+      --success-bg: #F0FDF4;
+      --warning-bg: #F5F3FF;
+      --danger: #B91C1C;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -25,189 +39,423 @@
       line-height: 1.8;
     }
 
-    header {
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      color: white;
-      text-align: center;
-      padding: 32px 16px;
-      border-radius: 0 0 28px 28px;
+    button, input {
+      font: inherit;
     }
 
-    header h1 { margin: 0 0 8px; font-size: 27px; }
-    header p { margin: 0; }
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: var(--white);
+      text-align: center;
+      padding: 36px 16px 42px;
+      border-radius: 0 0 30px 30px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(23px, 5vw, 32px);
+    }
+
+    .hero p {
+      margin: 4px 0;
+    }
+
+    .hero .subtitle {
+      opacity: 0.94;
+    }
 
     main {
-      width: min(92%, 720px);
-      margin: 24px auto;
+      width: min(92%, 760px);
+      margin: 26px auto;
     }
 
     .card {
       background: var(--white);
-      padding: 22px;
-      margin-bottom: 18px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px #1d4ed814;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px #1D4ED80C;
     }
 
-    h2 { color: var(--blue); margin-top: 0; }
+    h2 {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: 21px;
+    }
+
+    .intro {
+      color: var(--muted);
+      margin-top: 0;
+    }
 
     .details {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
+      margin-top: 22px;
     }
 
     .detail {
+      padding: 15px 10px;
+      border: 1px solid #DBEAFE;
+      border-radius: 14px;
       background: var(--light);
-      padding: 12px;
-      border-radius: 12px;
       text-align: center;
     }
 
     .detail strong {
       display: block;
       color: var(--purple);
-      font-size: 21px;
+      font-size: 25px;
+      line-height: 1.5;
+    }
+
+    .detail span {
+      font-size: 14px;
+    }
+
+    .notice {
+      padding: 13px 15px;
+      background: var(--warning-bg);
+      border-right: 4px solid var(--purple);
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-top: 17px;
     }
 
     label {
       display: block;
       font-weight: bold;
-      margin: 12px 0 5px;
+      margin-bottom: 7px;
+    }
+
+    .required {
+      color: var(--danger);
     }
 
     input {
+      display: block;
       width: 100%;
-      padding: 13px;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font: inherit;
+      min-height: 49px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input::placeholder {
+      color: #94A3B8;
+    }
+
+    input:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #A78BFA;
+      outline-offset: 3px;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px #1D4ED81A;
+    }
+
+    input[aria-invalid="true"] {
+      border-color: var(--danger);
+    }
+
+    .hint {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     button {
       width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
       border: 0;
       border-radius: 12px;
-      padding: 13px;
-      margin-top: 16px;
       background: var(--blue);
-      color: white;
-      font: inherit;
+      color: var(--white);
       font-weight: bold;
       cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
     }
 
-    button:focus-visible, input:focus-visible {
-      outline: 3px solid #a78bfa;
-      outline-offset: 2px;
+    button:hover {
+      filter: brightness(1.08);
     }
 
-    .secondary { background: var(--purple); }
+    button:active {
+      transform: scale(0.99);
+    }
 
-    .notice {
-      background: #f5f3ff;
-      border-right: 4px solid var(--purple);
+    .secondary {
+      background: var(--purple);
+    }
+
+    .message {
+      margin: 14px 0 0;
       padding: 12px;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
     }
 
-    #message { font-weight: bold; }
+    .message:empty {
+      display: none;
+    }
+
+    .message.success {
+      color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .message.error {
+      color: var(--danger);
+      background: #FEF2F2;
+    }
+
+    .message.info {
+      color: #5B21B6;
+      background: var(--warning-bg);
+    }
+
+    .topics {
+      padding-right: 24px;
+    }
+
+    .topics li {
+      margin: 7px 0;
+    }
 
     footer {
       text-align: center;
-      padding: 22px;
-      color: #475569;
+      padding: 18px 16px 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer p {
+      margin: 4px 0;
+    }
+
+    @media (min-width: 520px) {
+      .details {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .actions {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 420px) {
-      header h1 { font-size: 22px; }
-      .details { grid-template-columns: 1fr 1fr; }
-      .card { padding: 17px; }
+      main {
+        width: 94%;
+        margin-top: 18px;
+      }
+
+      .card {
+        padding: 17px;
+        border-radius: 16px;
+      }
+
+      h2 {
+        font-size: 19px;
+      }
+
+      .detail {
+        padding: 12px 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
+  <header class="hero">
     <h1>عباقرة البكالوريا</h1>
-    <p>امتحان اللغة العربية الإلكتروني</p>
+    <p class="subtitle">امتحان اللغة العربية الإلكتروني</p>
     <p>العام الدراسي 2026 / 2027</p>
+    <p>مستقبلك يبدأ من هنا</p>
   </header>
 
   <main>
-    <section class="card">
-      <h2>أهلًا بك في منصة الامتحان</h2>
-      <p>
+    <section class="card" aria-labelledby="welcomeTitle">
+      <h2 id="welcomeTitle">أهلًا بك في منصة الامتحان</h2>
+
+      <p class="intro">
         اختبر مستواك واستعد لامتحان اللغة العربية
         للصف الثاني بكالوريا.
       </p>
 
-      <div class="details">
+      <div class="details" aria-label="تفاصيل الامتحان">
         <div class="detail">
           <strong>20</strong>
-          سؤالًا
+          <span>سؤالًا</span>
         </div>
+
         <div class="detail">
           <strong>30</strong>
-          دقيقة
+          <span>دقيقة</span>
         </div>
+
         <div class="detail">
           <strong>3</strong>
-          محاولات كحد أقصى
+          <span>محاولات كحد أقصى</span>
         </div>
+
         <div class="detail">
           <strong>20</strong>
-          درجة مبدئيًا
+          <span>درجة مبدئيًا</span>
         </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>بيانات الطالب</h2>
+    <section class="card" aria-labelledby="studentTitle">
+      <h2 id="studentTitle">بيانات الطالب</h2>
+
       <p class="notice">
-        اكتب بياناتك قبل دخول الامتحان. هذه الواجهة تجريبية
-        ولا تحفظ البيانات أو ترسلها إلى خادم حتى الآن.
+        هذه نسخة تجريبية. لن تُرسل بياناتك أو تُحفظ في قاعدة بيانات
+        عند الضغط على متابعة. لا تدخل معلومات لا تحتاجها التجربة.
       </p>
 
       <form id="studentForm">
-        <label for="studentName">الاسم الرباعي</label>
-        <input id="studentName" name="studentName"
-          autocomplete="name" required>
+        <div class="field">
+          <label for="studentName">
+            الاسم الرباعي <span class="required">*</span>
+          </label>
+          <input
+            id="studentName"
+            name="studentName"
+            type="text"
+            autocomplete="name"
+            minlength="4"
+            maxlength="100"
+            placeholder="اكتب اسمك"
+            required
+          >
+        </div>
 
-        <label for="phone">رقم الهاتف</label>
-        <input id="phone" name="phone" type="tel"
-          inputmode="tel" autocomplete="tel" required>
+        <div class="field">
+          <label for="phone">
+            رقم الهاتف <span class="required">*</span>
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            maxlength="20"
+            placeholder="مثال: 01012345678"
+            aria-describedby="phoneHint"
+            required
+          >
+          <small id="phoneHint" class="hint">
+            أدخل رقمًا مصريًا صحيحًا، ويمكن استخدام +20.
+          </small>
+        </div>
 
-        <label for="school">اسم المدرسة</label>
-        <input id="school" name="school"
-          autocomplete="organization" required>
+        <div class="field">
+          <label for="school">
+            اسم المدرسة <span class="required">*</span>
+          </label>
+          <input
+            id="school"
+            name="school"
+            type="text"
+            autocomplete="organization"
+            minlength="2"
+            maxlength="120"
+            placeholder="اسم المدرسة"
+            required
+          >
+        </div>
 
-        <label for="username">اسم المستخدم</label>
-        <input id="username" name="username"
-          autocomplete="username" required>
+        <div class="field">
+          <label for="username">
+            اسم المستخدم <span class="required">*</span>
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            minlength="3"
+            maxlength="30"
+            pattern="[A-Za-z0-9_]+"
+            title="استخدم الحروف الإنجليزية والأرقام والشرطة السفلية فقط"
+            placeholder="مثال: student_2026"
+            aria-describedby="usernameHint"
+            required
+          >
+          <small id="usernameHint" class="hint">
+            3 أحرف على الأقل، باستخدام الإنجليزية والأرقام و _ فقط.
+          </small>
+        </div>
 
-        <button type="submit">متابعة</button>
+        <div class="actions">
+          <button type="submit">متابعة</button>
+          <button type="reset" class="secondary">مسح البيانات</button>
+        </div>
       </form>
 
-      <p id="message" role="status" aria-live="polite"></p>
+      <p id="message" class="message" role="status"
+         aria-live="polite" aria-atomic="true"></p>
     </section>
 
-    <section class="card">
-      <h2>موضوعات الامتحان</h2>
-      <ul>
+    <section class="card" aria-labelledby="topicsTitle">
+      <h2 id="topicsTitle">موضوعات الامتحان</h2>
+
+      <ul class="topics">
         <li>النحو</li>
         <li>البلاغة</li>
         <li>القراءة</li>
         <li>النصوص</li>
         <li>الفصل الأول من القصة</li>
       </ul>
+
       <p class="notice">
-        ستُضاف الأسئلة بعد مراجعة التقييمات المعتمدة
-        المطابقة للمنهج الدراسي.
+        لن يبدأ الامتحان الفعلي قبل إضافة الأسئلة ومراجعتها
+        والتأكد من مطابقتها للمنهج الدراسي.
       </p>
+
       <button class="secondary" id="previewButton" type="button">
         معاينة حالة الامتحان
       </button>
-      <p id="examMessage" role="status" aria-live="polite"></p>
+
+      <p id="examMessage" class="message info"
+         role="status" aria-live="polite" aria-atomic="true"></p>
     </section>
   </main>
 
@@ -217,21 +465,138 @@
   </footer>
 
   <script>
+    "use strict";
+
     const form = document.getElementById("studentForm");
     const message = document.getElementById("message");
+    const examMessage = document.getElementById("examMessage");
+    const phoneInput = document.getElementById("phone");
+    const nameInput = document.getElementById("studentName");
+    const schoolInput = document.getElementById("school");
+    const usernameInput = document.getElementById("username");
 
-    form.addEventListener("submit", function(event) {
+    function showMessage(element, text, type) {
+      element.textContent = text;
+      element.className = "message " + type;
+    }
+
+    function normalizePhone(value) {
+      // السماح بالأرقام العربية والإنجليزية
+      const arabicDigits = "٠١٢٣٤٥٦٧٨٩";
+      const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+
+      return value
+        .replace(/[٠-٩]/g, digit => arabicDigits.indexOf(digit))
+        .replace(/[۰-۹]/g, digit => persianDigits.indexOf(digit))
+        .replace(/[\s()-]/g, "");
+    }
+
+    function isValidEgyptianPhone(value) {
+      const phone = normalizePhone(value);
+
+      // أرقام المحمول المصرية بصيغة محلية أو دولية
+      return /^(?:(?:\+20|0020)1[0125][0-9]{8}|01[0125][0-9]{8})$/.test(phone);
+    }
+
+    function validatePhone() {
+      const value = phoneInput.value.trim();
+
+      phoneInput.setCustomValidity("");
+
+      if (value && !isValidEgyptianPhone(value)) {
+        phoneInput.setCustomValidity(
+          "أدخل رقم محمول مصري صحيحًا، مثل 01012345678 أو +201012345678."
+        );
+      }
+
+      phoneInput.setAttribute(
+        "aria-invalid",
+        String(!phoneInput.validity.valid)
+      );
+    }
+
+    function validateText(input) {
+      input.setCustomValidity("");
+
+      if (input.value.trim().length < input.minLength) {
+        input.setCustomValidity("يرجى إدخال بيانات صحيحة وكاملة.");
+      }
+
+      input.setAttribute(
+        "aria-invalid",
+        String(!input.validity.valid)
+      );
+    }
+
+    phoneInput.addEventListener("input", validatePhone);
+
+    [nameInput, schoolInput].forEach(input => {
+      input.addEventListener("input", () => validateText(input));
+    });
+
+    usernameInput.addEventListener("input", () => {
+      usernameInput.setCustomValidity("");
+
+      if (usernameInput.value &&
+          !/^[A-Za-z0-9_]{3,30}$/.test(usernameInput.value)) {
+        usernameInput.setCustomValidity(
+          "اسم المستخدم يجب أن يتكون من 3 إلى 30 حرفًا أو رقمًا إنجليزيًا أو _."
+        );
+      }
+
+      usernameInput.setAttribute(
+        "aria-invalid",
+        String(!usernameInput.validity.valid)
+      );
+    });
+
+    form.addEventListener("submit", event => {
       event.preventDefault();
-      message.textContent =
-        "تم التحقق من الحقول على هذه الصفحة فقط. تسجيل الطلاب لم يُفعّل بعد.";
+
+      validatePhone();
+      validateText(nameInput);
+      validateText(schoolInput);
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        showMessage(
+          message,
+          "راجع البيانات المطلوبة وصحح الحقول غير الصالحة.",
+          "error"
+        );
+
+        const invalidInput = form.querySelector(":invalid");
+        if (invalidInput) invalidInput.focus();
+
+        return;
+      }
+
+      showMessage(
+        message,
+        "تم التحقق من البيانات في هذه الصفحة فقط. لم يتم إنشاء حساب أو حفظ البيانات، والامتحان الفعلي غير متاح بعد.",
+        "success"
+      );
+    });
+
+    form.addEventListener("reset", () => {
+      message.textContent = "";
+      message.className = "message";
+
+      [phoneInput, nameInput, schoolInput, usernameInput].forEach(input => {
+        input.setCustomValidity("");
+        input.removeAttribute("aria-invalid");
+      });
     });
 
     document.getElementById("previewButton")
-      .addEventListener("click", function() {
-        document.getElementById("examMessage").textContent =
-          "الامتحان غير متاح بعد. سيتم تفعيله بعد إعداد الأسئلة وربط النظام.";
+      .addEventListener("click", () => {
+        showMessage(
+          examMessage,
+          "الامتحان غير متاح حاليًا. يجب إضافة الأسئلة، وإعداد التصحيح والمؤقت، وربط نظام المحاولات قبل فتحه للطلاب.",
+          "info"
+        );
       });
   </script>
 </body>
   </html>
-        
+  
