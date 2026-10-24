@@ -1,0 +1,9 @@
+node_modules/
+.env*
+!.env.example
+*-debug.log
+.firebase/
+service-account*.json
+firebase-config.local.js
+test-results/
+playwright-report/

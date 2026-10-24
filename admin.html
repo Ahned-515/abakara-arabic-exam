@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>إدارة التصحيح | عباقرة البكالوريا</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>لوحة إدارة الامتحان</h1>
+      <p>مراجعة الإجابات المقالية واعتماد النتائج</p>
+    </header>
+    <main>
+      <a id="studentLink" href="index.html">العودة إلى حساب الطالب</a>
+      <p id="message" role="status" aria-live="polite"></p>
+      <section id="access" class="card">
+        <h2>التحقق من صلاحيات الإدارة</h2>
+        <p>سجّل الدخول بحساب المشرف من صفحة الطالب أولًا.</p>
+      </section>
+      <section id="pending" class="card" hidden>
+        <h2>بانتظار التصحيح</h2>
+        <button id="refresh" class="secondary">تحديث القائمة</button>
+        <div id="list"></div>
+      </section>
+      <section id="studentsPanel" class="card" hidden>
+        <h2>سجل الطلاب</h2>
+        <p>بيانات خاصة بالمشرف؛ أفضل درجة نهائية وآخر دخول مسجل.</p>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الاسم</th>
+                <th>المستخدم</th>
+                <th>الهاتف</th>
+                <th>المدرسة</th>
+                <th>أفضل درجة</th>
+                <th>آخر دخول</th>
+              </tr>
+            </thead>
+            <tbody id="students"></tbody>
+          </table>
+        </div>
+        <button id="moreStudents" hidden>تحميل المزيد</button>
+      </section>
+      <section id="review" class="card" hidden>
+        <h2 id="student"></h2>
+        <form id="reviewForm">
+          <div id="questions"></div>
+          <button>اعتماد الدرجة النهائية</button>
+        </form>
+      </section>
+    </main>
+    <script type="module" src="dist/admin.js"></script>
+  </body>
+</html>

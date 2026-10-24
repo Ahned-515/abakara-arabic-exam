@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All writes and reads use authenticated callable functions. The server
+    // returns explicit public projections; private keys never reach browsers.
+    match /{document=**} { allow read, write: if false; }
+  }
+}
